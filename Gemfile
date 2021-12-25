@@ -50,3 +50,4 @@ gem "pry"
 gem "jwt"
 gem 'mechanize'
 gem 'dotenv-rails'
+gem 'active_model_serializers'
