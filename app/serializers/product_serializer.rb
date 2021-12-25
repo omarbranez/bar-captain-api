@@ -1,4 +1,5 @@
 class ProductSerializer
   include JSONAPI::Serializer
-  attributes :name, :category, :subcategory, :description
+  set_key_transform :camel_lower
+  attributes :id, :name, :category, :subcategory, :description
 end
