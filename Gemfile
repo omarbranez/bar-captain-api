@@ -48,3 +48,5 @@ end
 
 gem "pry"
 gem "jwt"
+gem 'mechanize'
+gem 'dotenv-rails'
