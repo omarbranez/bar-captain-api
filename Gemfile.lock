@@ -40,10 +40,6 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    active_model_serializers (0.10.0)
-      actionpack (>= 4.0)
-      activemodel (>= 4.0)
-      railties (>= 4.0)
     activejob (7.0.0)
       activesupport (= 7.0.0)
       globalid (>= 0.3.6)
@@ -93,6 +89,8 @@ GEM
     io-console (0.5.9)
     irb (1.4.0)
       reline (>= 0.3.0)
+    jsonapi-serializer (2.2.0)
+      activesupport (>= 4.2)
     jwt (2.3.0)
     loofah (2.13.0)
       crass (~> 1.0.2)
@@ -123,8 +121,6 @@ GEM
       connection_pool (~> 2.2)
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     pg (1.2.3)
     pry (0.14.1)
@@ -182,14 +178,13 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
-  x86_64-linux
 
 DEPENDENCIES
-  active_model_serializers
   bcrypt (~> 3.1.7)
   bootsnap
   debug
   dotenv-rails
+  jsonapi-serializer
   jwt
   mechanize
   pg (~> 1.1)
