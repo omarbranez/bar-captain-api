@@ -32,8 +32,12 @@ class UsersController < ApplicationController
         product = Product.find(params[:product_id])
         token = encode_token(user.id)
         if user.products.where(id: product.id).exists?
-            ProductsUser.where(user_id: user.id, product_id: product.id).destroy
-            render json: {user: UserSerializer.new(user), token: token}
+            @product_to_delete = ProductsUser.find_by(user_id: user.id, product_id: product.id)
+            @product_to_delete.destroy
+            options = { include: [:drinks, :products]}
+            # binding.pry
+            # ProductsUser.where(user_id: user.id, product_id: product.id).destroy
+            render json: {user: UserSerializer.new(user, options), token: token}
         else
             render json: {user: UserSerializer.new(user), token: token, errors: "Product does not exist in inventory"}
         end
