@@ -8,7 +8,7 @@ class UsersController < ApplicationController
         user = User.new(user_params)
         if user.save
             token = encode_token(user.id)
-            render json: {user: UserSerializer.new(user), token: token}
+            render json: {user: UserSerializer.new(user), token: token, variant: "success", message: "Login Successful!"}
         else
             render json: user.errors, status: :unprocessable_entity
         end
@@ -19,11 +19,13 @@ class UsersController < ApplicationController
         product = Product.find(params[:product_id])
         token = encode_token(user.id)
         if user.products.where(id: product.id).exists?
-            render json: {user: UserSerializer.new(user), token: token, errors: "Product already exists in inventory"}
+            # render json: {user: UserSerializer.new(user), token: token, errors: "Product already exists in inventory"}
+            render json: {user: UserSerializer.new(user), token: token, variant: "error", message: "#{product.name} already exists in inventory"}
         else
             options = { include: [:drinks, :products]}
             ProductsUser.create(user_id: user.id, product_id: product.id)
-            render json: {user: UserSerializer.new(user, options), token: token}
+            # render json: {user: UserSerializer.new(user, options), token: token}
+            render json: {user: UserSerializer.new(user, options), token: token, variant: "success", message: "#{product.name} added to inventory!"}
         end
     end
 
@@ -37,9 +39,10 @@ class UsersController < ApplicationController
             options = { include: [:drinks, :products]}
             # binding.pry
             # ProductsUser.where(user_id: user.id, product_id: product.id).destroy
-            render json: {user: UserSerializer.new(user, options), token: token}
+            render json: {user: UserSerializer.new(user, options), token: token, variant: "success", message: "#{product.name} removed from inventory!"}
         else
-            render json: {user: UserSerializer.new(user), token: token, errors: "Product does not exist in inventory"}
+            # render json: {user: UserSerializer.new(user), token: token, errors: "Product does not exist in inventory"}
+            render json: {user: UserSerializer.new(user), token: token, variant: "error", message: "#{product.name} does not exist in inventory"}
         end
     end
 
