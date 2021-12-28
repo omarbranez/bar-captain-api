@@ -36,6 +36,7 @@ class UsersController < ApplicationController
         if user.products.where(id: product.id).exists?
             @product_to_delete = ProductsUser.find_by(user_id: user.id, product_id: product.id)
             @product_to_delete.destroy
+            ProductsUser.recheck_drinks_user(user)
             options = { include: [:drinks, :products]}
             # binding.pry
             # ProductsUser.where(user_id: user.id, product_id: product.id).destroy
