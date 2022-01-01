@@ -51,3 +51,4 @@ gem "jwt"
 gem 'mechanize'
 gem 'dotenv-rails'
 gem 'jsonapi-serializer'
+# gem 'bullet'
