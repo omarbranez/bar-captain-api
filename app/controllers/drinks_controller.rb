@@ -1,6 +1,6 @@
 class DrinksController < ApplicationController
     def index
-        drinks = Drink.all
+        drinks = Drink.includes(:products).all
         # options = { include: [:user]}
         render json: DrinkSerializer.new(drinks)
     end

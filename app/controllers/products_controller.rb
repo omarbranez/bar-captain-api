@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
     def index
-        products = Product.all
+        products = Product.includes(:drinks).all
         render json: ProductSerializer.new(products)
     end
 
