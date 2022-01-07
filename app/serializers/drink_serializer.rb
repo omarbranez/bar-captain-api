@@ -5,14 +5,15 @@ class DrinkSerializer
   attribute :products do |drink|
     drink.products
   end
-  attribute :ingredients do |drink|
+  # attribute :ingredients do |drink|
 
-    hash = {}
-    DrinksProduct.where(drink_id: drink.id).each do |dri|
-        hash[:product] = Product.includes(:drinks_products).find(DrinksProduct.where(drink_id: drink.id).first.product_id)
-        hash[:quantity] = dri.quantity
-    end
-    # binding.pry
-     hash
-  end
+  #   hash = {}
+    
+  #   DrinksProduct.where(drink_id: drink.id).each do |dri|
+  #       hash[:product] = Product.includes(:drinks_products).find(DrinksProduct.where(drink_id: drink.id).first.product_id)
+  #       hash[:quantity] = dri.quantity
+  #   end
+  #   # binding.pry
+  #    hash
+  # end
 end

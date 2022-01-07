@@ -8,7 +8,7 @@ class DrinksController < ApplicationController
     def show
         drink = Drink.find(params[:id])
         # render json: DrinkSerializer.new(drink)
-        render json: DrinkModalSerializer.new(drink)
+        render json: DrinkShowSerializer.new(drink)
     end
 
     # def modal
