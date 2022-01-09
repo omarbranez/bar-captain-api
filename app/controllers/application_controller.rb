@@ -17,7 +17,7 @@ class ApplicationController < ActionController::API
   
     def render_user_with_token(user)
         # binding.pry
-      render json: {user: UserSerializer.new(user), token: encode_token(user.id)}
+      render json: {user: UserSerializer.new(user), token: encode_token(user.id), variant: "success", message: "Successfully logged in as #{user.username}"}
     end
   
   
